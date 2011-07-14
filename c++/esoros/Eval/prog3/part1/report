@@ -1,0 +1,44 @@
+ /*  Eric Soros
+  *  CS 33001
+  *  March 27, 2011
+  *  Prd pog3, Part1
+  */
+
+//comments
+-good job!
+
+-grade 20/20
+%%%
+General notes on writing good clean code:
+
+Write good and descriptive comments, such comments help you when you return to your code and would 
+save time comprehending your code and will help you avoid bugs
+
+Before each method you write a have a functionality short summary, PRE and POST conditions 
+Make sure that each method you write is responsible only for one functionality
+
+Write clean methods, for each, divid its body to blocks with a header comment on top of each
+
+Example:
+
+/** 
+I am responsible of one thing which is, ..
+PRE:
+POST: 
+*/
+type func( type varX, type varY) 
+{
+		// comment 1 about block1
+		code, block1
+
+		// comment 2 about block2
+		code, block2
+
+		// comment 3 about block3
+		code, block3
+
+		return;
+}
+More on writing clean code, read:
+Clean Code, Robert C. Martin's book   http://proquest.safaribooksonline.com/9780136083238
+//

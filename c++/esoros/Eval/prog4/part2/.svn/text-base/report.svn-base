@@ -1,0 +1,22 @@
+ /*  Eric Soros
+  *  CS 33001
+  *  April 24, 2011
+  *  Prog 4, Part 2
+  */ 
+
+//
+-Unit Testing is no good, you need to work on more testing scenarios for first, 
+ You need to test if first method got a correct sexpr, the processing 
+ inside is correct, the result is correct too  
+ for example: for (first (quote (a b c)))
+ Have eval received a aList? s.identity == aList?
+ Is the first Atom "first"?  Second atom "quote"?  Third atom a? ...
+ the result, was is an sexpr?
+ Is the result a?
+ Sure, still, you can write more tests.  Make these pass: (first (rest (quote (a b c d)))),
+ (first (rest (rest (quote (a b c d)))) )   (-2)
+
+grade  38/40
+%%%
+//
+

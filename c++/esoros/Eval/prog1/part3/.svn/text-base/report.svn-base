@@ -1,0 +1,16 @@
+ /*  Eric Soros
+  *  CS 33001
+  *  February 6, 2011
+  *  Prog1, part3
+  */
+
+//comments
+-Good tests, You still can develop more test cases 
+-implement (+) for bigints + bigints, and use it in bigint (+) scalar
+-warning: no newline at end of file, have a carriage return at the end of your source files, an Enter
+-(>>) should read bigints from file, without help from the main
+-You have an extra iteration
+-good job!
+
+-grade 33/35 + 2 bonus  = 35/35
+//

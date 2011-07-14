@@ -1,0 +1,42 @@
+ /*  Eric Soros
+  *  CS 33001
+  *  January 30, 2011
+  *  Prog1, part2
+  */ 
+
+//comments
+-good job!
+
+grade 20/20 + bonus 1 = 21/20 
+//
+
+General Notes:
+-rename your files and folders to match the tree below, such consistency will help a lot in the grading process:
+cs33001 ( or YOURUSERNAME)
+|-- Eval
+`-- prog1
+    |-- part1
+    |   |-- Makefile
+    |   |-- README
+    |   |-- bigint.cpp
+    |   |-- bigint.h
+    |   `-- bigint_u.cpp
+    |-- part2
+    |   |-- Makefile
+    |   |-- READEME
+    |   |-- bigint.cpp
+    |   |-- bigint.h
+    |   `-- bigint_u.cpp
+    `-- part3
+        |-- Makefile
+        |-- READEME
+        |-- bigint.cpp
+        |-- bigint.h
+        |-- bigint_u.cpp
+        `-- main.cpp
+-Grading for compiling and running your code uses our CS department UNIX machines, 
+ so make sure that your code compiles with a make and runs under such environment
+-have a README file that has instructions on how to run and compile your program or any notes
+-Don't commit binary files, input files, output files .. only what you have in the tree up
+-have your head comment (name .. etc) on each file
+-contact me at aalali@cs.kent.edu, office MSB 152, office hours MW 2-3 at MSB 160 
