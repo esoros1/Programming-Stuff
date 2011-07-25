@@ -1,7 +1,6 @@
+#!/usr/bin/python
+
 #PROJECT EULER 89: ROMAN NUMERALS
-
-
-
 # 1 dict for mapping numerals to values, and another to go the otherway
 # not exactly beautiful, but whatever
 numerals = {}
