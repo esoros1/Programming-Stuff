@@ -6,7 +6,7 @@ def listToString(l):
 	for item in l:
 		result += item
 	return result
-#takes a string of elements to envoke, a hashmap of elements that combine, and a list of elements that are opposed
+#takes a string of elements to envoke, a hashmap of elements that combine, and a hashmap of elements that are opposed
 #returns a string
 def magicka(envokeOrder,combine,opposed):
 	elementList = []
@@ -20,19 +20,38 @@ def magicka(envokeOrder,combine,opposed):
 				elementList = elementList[:-2]
 				elementList.append(combine[lastTwo])
 			elif len(opposed) > 1:
-				if opposed[0] in elementList and opposed[1] in elementList:
+				if element in opposed and opposed[element] in elementList:
 					elementList = []
 	#remove the ' characters from the list
 	return str(elementList).replace("""'""","")
 
+#parsing the input from the file. Hacked together. Really ugly
 def main():
-	f = open('test.txt','r')
+	f = open('B-large-practice.in','r')
 	cases = int(f.readline())
-	combine = {}
+	out = open('out.txt','w')
 
-	line = f.readline()
-	line = f.readline()
-	print line.strip().split(" ")
+	for cas in range(cases):
+		combine = {}
+		opposed = {}
+		line = f.readline()
+		data =  line.strip().split(" ")
+		i = 0
+		for j in range(int(data[i])):
+			i += 1
+			combine[data[i][0] + data[i][1]] = data[i][-1]
+			combine[data[i][1] + data[i][0]] = data[i][-1]
+		i += 1
+		for j in range(int(data[i])):
+			i += 1
+			opposed[data[i][0]] = data[i][1]
+			opposed[data[i][1]] = data[i][0]
+		i += 1
+		envokeOrder =  data[i+1]
+
+		out.write('Case #{0}: {1}\n'.format(cas+1,magicka(envokeOrder,combine,opposed)))
+	out.close()
+	
 
 if __name__ == "__main__":
 	main()
