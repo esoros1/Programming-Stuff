@@ -22,14 +22,19 @@ for num in nums:
 
 f = open("keylog.txt")
 for line in f:
+	#find the digits that come after each number in the passcode
 	passcode = line.strip()
 	k = passcode[0]
 	v = strToLst(passcode[1:])
 	for num in v:
 		if num not in order[k]:				
 			order[k].append(num)
+	k = passcode[1]
+	v = passcode[2]
+	if v not in order[k]:
+		order[k].append(v)
 
-#becuase 0 and 9 are the same length, it will output the wrong answer, just switch the zero and nine!
+#Sort the digits base on the number of digits that come after it. They will be in the right order!
 for (x,y) in sorted(order.items(), key = lambda (x,y): len(y), reverse = True):
 	print x,
 
