@@ -46,6 +46,9 @@ namespace poker
        //return the size of the deck
         public int size() { return deck.Count; }
         
+        //Is it empty?
+        public bool isEmpty() { return deck.Count == 0; }
+        
         //shuffle the deck. deck is changed
         public void shuffle()
         {
