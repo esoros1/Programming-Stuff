@@ -47,7 +47,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.playerLabel = new System.Windows.Forms.Label();
-            this.playerCardText = new System.Windows.Forms.Label();
+            this.playerCardLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.bottom.SuspendLayout();
             this.middle.SuspendLayout();
@@ -193,7 +193,7 @@
             this.top.Controls.Add(this.button4);
             this.top.Controls.Add(this.button5);
             this.top.Controls.Add(this.playerLabel);
-            this.top.Controls.Add(this.playerCardText);
+            this.top.Controls.Add(this.playerCardLabel);
             this.top.Dock = System.Windows.Forms.DockStyle.Top;
             this.top.Location = new System.Drawing.Point(0, 0);
             this.top.Name = "top";
@@ -260,16 +260,15 @@
             this.playerLabel.Size = new System.Drawing.Size(65, 20);
             this.playerLabel.TabIndex = 6;
             this.playerLabel.Text = "Player 1";
-            this.playerLabel.Click += new System.EventHandler(this.playerLabel_Click);
             // 
-            // playerCardText
+            // playerCardLabel
             // 
-            this.playerCardText.AutoSize = true;
-            this.playerCardText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playerCardText.Location = new System.Drawing.Point(858, 0);
-            this.playerCardText.Name = "playerCardText";
-            this.playerCardText.Size = new System.Drawing.Size(0, 20);
-            this.playerCardText.TabIndex = 7;
+            this.playerCardLabel.AutoSize = true;
+            this.playerCardLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playerCardLabel.Location = new System.Drawing.Point(858, 0);
+            this.playerCardLabel.Name = "playerCardLabel";
+            this.playerCardLabel.Size = new System.Drawing.Size(0, 20);
+            this.playerCardLabel.TabIndex = 7;
             // 
             // Form1
             // 
@@ -310,7 +309,7 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Label computerLabel;
-        private System.Windows.Forms.Label playerCardText;
+        private System.Windows.Forms.Label playerCardLabel;
         private System.Windows.Forms.Label computerCardLabel;
     }
 }
