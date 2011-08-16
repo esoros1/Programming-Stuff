@@ -5,7 +5,7 @@ using System.Text;
 
 namespace poker
 {
-    class Card
+    public class Card
     {
         public int value;
         public char suit;

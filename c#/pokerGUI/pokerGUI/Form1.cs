@@ -14,8 +14,8 @@ namespace pokerGUI
     public partial class Form1 : Form
     {
         private Deck deck;
-        private Hand hand1;
-        private Hand hand2;
+        private Hand playerHand;
+        private Chand computerHand;
         //how many times has the player been dealt cards?
         private int numTimesDealt = 0;
         
@@ -25,9 +25,9 @@ namespace pokerGUI
             deck.shuffle();
            
             //make the player's hand
-            hand1 = new Hand(deck.draw(), deck.draw(), deck.draw(), deck.draw(), deck.draw());
+            playerHand = new Hand(deck.draw(), deck.draw(), deck.draw(), deck.draw(), deck.draw());
             //make the computer's hand
-            hand2 = new Hand(deck.draw(), deck.draw(), deck.draw(), deck.draw(), deck.draw());
+            computerHand = new Chand(deck.draw(), deck.draw(), deck.draw(), deck.draw(), deck.draw());
             
             InitializeComponent();
             //draw the cards for the first time.
@@ -76,21 +76,21 @@ namespace pokerGUI
             //update the cards in the hand so they match the screen.
             //make them visible if not.
             button1.Visible = true;
-            button1.BackgroundImage = cardToImage(hand1[0]);
+            button1.BackgroundImage = cardToImage(playerHand[0]);
 
             button2.Visible = true;
-            button2.BackgroundImage = cardToImage(hand1[1]);
+            button2.BackgroundImage = cardToImage(playerHand[1]);
 
             button3.Visible = true;
-            button3.BackgroundImage = cardToImage(hand1[2]);
+            button3.BackgroundImage = cardToImage(playerHand[2]);
 
             button4.Visible = true;
-            button4.BackgroundImage = cardToImage(hand1[3]);
+            button4.BackgroundImage = cardToImage(playerHand[3]);
 
             button5.Visible = true;
-            button5.BackgroundImage = cardToImage(hand1[4]);
+            button5.BackgroundImage = cardToImage(playerHand[4]);
             //update the text next to the hand
-            playerCardText.Text = Hand.getHandValue(hand1);
+            playerCardLabel.Text = Hand.getHandValue(playerHand);
         
         }
         
@@ -104,15 +104,15 @@ namespace pokerGUI
             //next, find out which button it was and change the corresponding
             //card in the hand
             if (button == button1)
-                hand1[0] = deck.draw();
+                playerHand[0] = deck.draw();
             else if (button == button2)
-                hand1[1] = deck.draw();
+                playerHand[1] = deck.draw();
             else if (button == button3)
-                hand1[2] = deck.draw();
+                playerHand[2] = deck.draw();
             else if (button == button4)
-                hand1[3] = deck.draw();
+                playerHand[3] = deck.draw();
             else
-                hand1[4] = deck.draw();
+                playerHand[4] = deck.draw();
         }
 
         //if clicked once or twice, than do nothing
@@ -120,10 +120,11 @@ namespace pokerGUI
         //disable everything, and calculate the total.
         private void draw_Click(object sender, EventArgs e)
         {
-            //change the number of turns left on the button
-            numTimesDealt++;
-            drawButton.Text = "Draw: " + (3 - numTimesDealt).ToString() + " Turns left";
             player1UpdateCards();
+            //have the computer make a turn
+            computerHand.turn(deck, numTimesDealt++);
+            //change the number of turns left
+            drawButton.Text = "Draw: " + (3 - numTimesDealt).ToString() + " Turns left";
             if (numTimesDealt == 3)
                 endGame();
         }
@@ -131,6 +132,9 @@ namespace pokerGUI
         //ends the game
         private void end_Click(object sender, EventArgs e)
         {
+            //have the computer do their remaning turns.
+            while (numTimesDealt < 3)
+                computerHand.turn(deck, numTimesDealt++);
             endGame();
         }
         //disables all of the buttons, calculates the totals, and ends the game
@@ -147,16 +151,16 @@ namespace pokerGUI
                 control.Enabled = false;
             //flip over the computer's card
             //and calculate the total
-            button6.BackgroundImage = cardToImage(hand2[0]);
-            button7.BackgroundImage = cardToImage(hand2[1]);
-            button8.BackgroundImage = cardToImage(hand2[2]);
-            button9.BackgroundImage = cardToImage(hand2[3]);
-            button10.BackgroundImage = cardToImage(hand2[4]);
-            computerCardLabel.Text = Hand.getHandValue(hand2);
+            button6.BackgroundImage = cardToImage(computerHand[0]);
+            button7.BackgroundImage = cardToImage(computerHand[1]);
+            button8.BackgroundImage = cardToImage(computerHand[2]);
+            button9.BackgroundImage = cardToImage(computerHand[3]);
+            button10.BackgroundImage = cardToImage(computerHand[4]);
+            computerCardLabel.Text = Hand.getHandValue(computerHand);
 
             string winnerText = "";
             const string captionText = "Game Over";
-            if (Hand.won(hand1, hand2))
+            if (Hand.won(playerHand, computerHand))
                 winnerText = "Player 1 won!  Another Game?";
             else
                 winnerText = "Computer won!  Another Game?";
@@ -171,9 +175,9 @@ namespace pokerGUI
                 deck.shuffle();
 
                 //make the player's hand
-                hand1 = new Hand(deck.draw(), deck.draw(), deck.draw(), deck.draw(), deck.draw());
+                playerHand = new Hand(deck.draw(), deck.draw(), deck.draw(), deck.draw(), deck.draw());
                 //make the computer's hand
-                hand2 = new Hand(deck.draw(), deck.draw(), deck.draw(), deck.draw(), deck.draw());
+                computerHand = new Chand(deck.draw(), deck.draw(), deck.draw(), deck.draw(), deck.draw());
 
                 //draw the cards for the first time.
                 //the other functions take care of the rest.
@@ -187,15 +191,16 @@ namespace pokerGUI
                 //set the buttons in the middle to enables
                 foreach (Control control in middle.Controls)
                     control.Enabled = true;
-            
+                //set all the buttons back to a default state
+                numTimesDealt = 0;
+                drawButton.Text = "Draw: " + (3 - numTimesDealt).ToString() + " Turns left";
+                computerCardLabel.Text = "";
+                playerCardLabel.Text = Hand.getHandValue(playerHand);
             }
             else
                 this.Close();
         }
 
-        private void playerLabel_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

@@ -5,13 +5,13 @@ using System.Text;
 
 namespace poker
 {
-    class Hand
+    public class Hand
     {
-        private Card[] hand;
+        protected Card[] hand;
         //which hand is more valuable?
-        private int handTotal = 0;
+        protected int handTotal = 0;
        //which has the highest card?
-        private int highestCardValue = 0;
+        protected int highestCardValue = 0;
         
         //default constructor
         public Hand()
