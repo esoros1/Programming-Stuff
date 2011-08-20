@@ -76,7 +76,8 @@ void printtree(nodeptr n)
  int isnoiseword(char * word)
  {
 	int i;
-	for(i = 0; i < 4; ++i)
+	size_t size = sizeof(noise_words)/sizeof(char *);
+	for(i = 0; i < size; ++i)
 	{
 		if(strcmp(word,noise_words[i]) == 0)
 			return TRUE;
