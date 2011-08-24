@@ -2,34 +2,40 @@
 //where a floating-point number may be followed by e or E and an optionally signed exponent.
 #include <stdio.h>
 #include "calc.h"
-
+#include "stack.h"
 int main()
 {
+
+	stackptr s = init_stack(s);
 	double c;
-	while( (c = getNextOperator("1 2 - 4 5 + *")) != EOF ) 
+	char line [100];
+
+	while((getline(line,100)) > 0)
 	{
-		if (c == '+')
-			push(pop() + pop());
-		else if (c == '-')
+		while( (c = getNextOperator(line)) != EOF ) 
 		{
-			double rhs = pop();
-			double lhs = pop();
-			push(lhs - rhs);
+			if (c == '+')
+				push(s,pop(s) + pop(s));
+			else if (c == '-')
+			{
+				double rhs = pop(s);
+				double lhs = pop(s);
+				push(s,lhs - rhs);
+			}
+			else if (c == '*')
+				push(s,pop(s) * pop(s));
+			else if (c == '/')
+			{
+				double rhs = pop(s);
+				double lhs = pop(s);
+				push(s,lhs / rhs);
+			}
+			//else, it's a number, and just push it
+			else
+				push(s,c);
 		}
-		else if (c == '*')
-			push(pop() * pop());
-		else if (c == '/')
-		{
-			double rhs = pop();
-			double lhs = pop();
-			push(lhs / rhs);
-		}
-		//else, it's a number, and just push it
-		else
-			push(c);
 	}
-	
-	printf("%g\n",pop());
+	printf("%g\n",pop(s));
 }
 
 
