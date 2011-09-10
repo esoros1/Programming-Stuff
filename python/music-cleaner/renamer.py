@@ -5,6 +5,10 @@ import musicbrainz2.model as m
 
 import sys
 
+if len(sys.argv) < 2:
+	print "Useage: Artist - Album"
+	sys.exit(1)
+
 
 #concatinate the agrument
 searchArtist = ""
