@@ -37,11 +37,11 @@ public class ClientConnectionThread extends Thread {
            in = new ObjectInputStream(clientSocket.getInputStream());
            out = new ObjectOutputStream(clientSocket.getOutputStream());
 			
-			//add the client's output stream to the list.        	
-		   ChatServer.clientOutputs.add(out);
-		   //prompt the user for a username
+           //add the client's output stream to the list.        	
+	   ChatServer.clientOutputs.add(out);
+           //prompt the user for a username
            out.writeObject("Enter a username");
-		   out.flush();
+	   out.flush();
            //get usernmae from the client
            username = (String) in.readObject();
            
@@ -53,7 +53,7 @@ public class ClientConnectionThread extends Thread {
             //Logger.getLogger(ClientConnectionThread.class.getName()).log(Level.SEVERE, null, ex);
          } catch (IOException ex) {
          Logger.getLogger(ClientConnectionThread.class.getName()).log(Level.SEVERE, null, ex);
-            }
+         }
    }
 
 
