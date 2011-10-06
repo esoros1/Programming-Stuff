@@ -1,60 +1,58 @@
 #! /usr/bin/python
 
-import musicbrainz2.webservice as ws
-import musicbrainz2.model as m
-
-import sys
-
-if len(sys.argv) < 2:
-	print "Useage: Artist - Album"
-	sys.exit(1)
-
-
-#concatinate the agrument
-searchArtist = ""
-for arg in sys.argv[1:]:
-	searchArtist += arg +" "
-searchArtist = searchArtist.strip()
+from AlbumTracks import getRelease, getReleaseID
+from AlbumArt import downloadArtToPath
+import mutagen
+import os
+#do all of the mp3s start with numbers?
+def isNumeric(mp3s):
+	for i in range(len(mp3s)):
+		mp3 = mp3s[i]
+		if int(mp3[:2]) != i+1:
+			return False
+	return True
 
 
-q = ws.Query()
+path = r'/Users/ericsoros/documents/python/music-cleaner/Recipe for hate/'
+mp3s = [ f for f in os.listdir(path) if os.path.isfile(os.path.join(path,f)) and f[-3:] == 'mp3']
+release = getRelease(getReleaseID("Bad Religion","Recipe for Hate"))
 
-f = ws.ArtistFilter(searchArtist,5)
-artistResults = q.getArtists(f)
+for mp3 in mp3s:
+	tag = mutagen.File(os.path.join(path,mp3), easy = True)
+	tag.delete()
 
+for i in range(len(mp3s)):
+	mp3 = mp3s[i]
+	tag = mutagen.File(os.path.join(path,mp3),easy = True)
 
-for i in range(len(artistResults)):
-	artist = artistResults[i].artist
-	print str(i+1)+": "+ artist.name
+	tag['album'] = release.title
+	tag['artist'] = release.artist.name
+	tag['title'] = release.tracks[i].title
+	tag['performer'] = release.artist.name
+	tag['tracknumber'] = '{0}/{1}'.format(str(i+1),str(len(mp3s)))
 
-choice = int(input("Which Artist Do You Want? "))
+	tag.save()
 
-artist = artistResults[choice-1].artist
-
-inc = ws.ArtistIncludes( releases=(m.Release.TYPE_OFFICIAL, m.Release.TYPE_ALBUM), tags=True, releaseGroups=True)
-#print the artist, with albums
-artist = q.getArtistById(artist.id,inc)
-for release in artist.getReleases():	   
-	print
-	print "Id        :", release.id
-	print "Title     :", release.title
-	print "ASIN      :", release.asin
-	print "Text      :", release.textLanguage, '/', release.textScript
-	print "Types     :", release.types
-	
-#print the artist, with EP's
-inc = ws.ArtistIncludes( releases=(m.Release.TYPE_OFFICIAL, m.Release.TYPE_EP), tags=True, releaseGroups=True)
-artist = q.getArtistById(artist.id, inc)
-for release in artist.getReleases():	   
-	print
-	print "Id        :", release.id
-	print "Title     :", release.title
-	print "ASIN      :", release.asin
-	print "Text      :", release.textLanguage, '/', release.textScript
-	print "Types     :", release.types
+downloadArtToPath("Bad Religion","Recipe for Hate",path)
 
 
+#if len(sys.argv) < 2:
+#	print "Useage: Artist - Album"
+#	sys.exit(1)
 
 
+#parse the command line argument
+#searchArtist = ""
+#searchAlbum = ""
+#args = ""
+#for arg in sys.argv[1:]:
+#	args += arg+" "
+#strip whitespace
+#argsSplit =  args.split("-")
+#searchArtist = argsSplit[0].strip()
+#searchAlbum = argsSplit[1].strip()
 
-	
+#for track in getReleaseTracks(getReleaseID(searchArtist,searchAlbum)):
+#	print track.title
+
+
