@@ -44,12 +44,22 @@ public class ClientConnectionThread extends Thread {
        ObjectOutputStream out = client.getOutputStream();
         
        try {
+<<<<<<< HEAD
            	
 			//add the client's output stream to the list.        	
 		   ChatServer.clients.add(client);
 		   //prompt the user for a username
+=======
+           
+           in = new ObjectInputStream(clientSocket.getInputStream());
+           out = new ObjectOutputStream(clientSocket.getOutputStream());
+			
+           //add the client's output stream to the list.        	
+	   ChatServer.clientOutputs.add(out);
+           //prompt the user for a username
+>>>>>>> ec1adcfb474ab50bd6685ef8cabeb9bab9aa0eee
            out.writeObject("Enter a username");
-		   out.flush();
+	   out.flush();
            //get usernmae from the client
            String username = (String) in.readObject();
 		   client.setUsername(username);
@@ -66,9 +76,13 @@ public class ClientConnectionThread extends Thread {
          } catch (ClassNotFoundException ex) {
             //Logger.getLogger(ClientConnectionThread.class.getName()).log(Level.SEVERE, null, ex);
          } catch (IOException ex) {
+<<<<<<< HEAD
          	System.out.println("Lost Connection to Client...");
          	//remove the client from the list of clients
          	ChatServer.clients.remove(client);
+=======
+         Logger.getLogger(ClientConnectionThread.class.getName()).log(Level.SEVERE, null, ex);
+>>>>>>> ec1adcfb474ab50bd6685ef8cabeb9bab9aa0eee
          }
    }
 
