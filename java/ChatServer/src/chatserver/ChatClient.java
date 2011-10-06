@@ -42,7 +42,7 @@ public class ChatClient {
 			inputThread.start();
            //get input from the server, and send it as a message to the server  
 	   		while (true) {
-	   			System.out.println("Enter a message to send to the server");
+	   			//System.out.println("Enter a message to send to the server");
 				String s = userInput.readLine();
 				out.writeObject(new Message(s,username));		
        	 		out.flush();

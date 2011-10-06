@@ -20,8 +20,8 @@ public class ChatServer {
     /**
      * @param args the command line arguments
      */
-    public static LinkedBlockingQueue<Message> messagesToSend = new LinkedBlockingQueue();
-    public static List<ObjectOutputStream> clientOutputs = new LinkedList<ObjectOutputStream>();
+    public static LinkedBlockingQueue<Message> messagesToSend = new LinkedBlockingQueue<Message>();
+    public static List<Client> clients = new LinkedList<Client>();
 
     public static void main(String[] args) throws IOException {
         // TODO code application logic here

@@ -23,7 +23,7 @@ public class ChatClientInputThread extends Thread {
 
 		} catch (IOException e) {
 			System.out.println("Lost Connection To Server");
-			System.exit(-1);
+			//System.exit(-1);
 		} catch (ClassNotFoundException e) {
 			System.out.println(e);
 			System.exit(-1);

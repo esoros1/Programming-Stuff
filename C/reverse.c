@@ -55,7 +55,6 @@ void itoa(int num, char s [])
 	if (sign < 0)
 		s[i] = '-';
 	reverse(s);
-
 }
 
 

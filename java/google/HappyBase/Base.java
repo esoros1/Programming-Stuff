@@ -9,9 +9,12 @@ import java.io.*;
 public class Base
 {
 
-	public static final int MAX = 1000000;
+	public static final int MAX = 10000;
+	//holds the string representation of a number that is happy in base 10.
+	//some binary digits get too large to store as a int
 	public static HashSet<String> happyNumsCalculated = new HashSet<String>();
-	
+	//String representation of numbers that aren't happy
+	public static HashSet<String> badNums = new HashSet<String>();
 
 	static String toBaseString(Integer n, int base)
 	{
@@ -28,27 +31,31 @@ public class Base
 
 	static boolean isHappy(Integer n, int base)
 	{
-		HashSet<String> nums = new HashSet<String>();
-		LinkedList<String> cachedNums = new LinkedList<String>();
+		HashSet<String> cache = new HashSet<String>();
 		//convert to the correct representation
 		String number = toBaseString(n,base);
 		boolean result = false;
+		boolean exitEarly = false;
 		do
 		{
 			//check if the current number leads to a happy ending :)
-			result =  happyNumsCalculated.contains(number);
-			nums.add(number);
-			cachedNums.add(number);
+			exitEarly =  happyNumsCalculated.contains(number) || badNums.contains(number);
+			cache.add(number);
 			number = toBaseString(sumSquareDigitsString(number),base);
-		} while(!number.equals("1") && !nums.contains(number) && !result);
+		} while(!number.equals("1") && !cache.contains(number) && !exitEarly);
+		//we left early because the number was found in the cache
+		if(exitEarly)
+		{
+			if(happyNumsCalculated.contains(number))
+				return true;
+			return false;
+		}
 
-		if(result)
-			return true;
 		result = number.equals("1");
 		if (result)
-			happyNumsCalculated.add(number);
+			for(String s: cache)
+				happyNumsCalculated.add(s);
 		return result;
-		
 	}
 
 	public static void main(String [] args) throws IOException

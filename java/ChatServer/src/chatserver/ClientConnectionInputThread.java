@@ -15,25 +15,24 @@ import java.util.logging.Logger;
  */
 public class ClientConnectionInputThread extends Thread {
     
-    ObjectInputStream in;
+    private Client client;
     
-    public ClientConnectionInputThread(ObjectInputStream in)
-    {
-        this.in = in;
-    }
+    public ClientConnectionInputThread(Client client) {this.client = client;}
 
     @Override
     public void run() 
     {
         //get input ftom the client
-       Message message = null;
+        Message message = null;
+		ObjectInputStream in = client.getInputStream();
         while (true) {
             try {
                 message = (Message) in.readObject();
             		ChatServer.messagesToSend.add(message);
             } catch (IOException ex) {
-                System.out.println("Lost Connection to client");
-                break;
+                System.out.println("Lost Connection to client " + client.getUsername() );
+				//remove client from the list of clients to send to
+				
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(ClientConnectionInputThread.class.getName()).log(Level.SEVERE, null, ex);
             }

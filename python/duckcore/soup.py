@@ -37,7 +37,7 @@ posts = []
 
 #fill posts
 
-for incident in soup.findAll('div', { 'class':'post-outer'}):
+for incident in soup.findAll('div'):
 	posts.append(Post(incident.contents[1]))
 
 for post in posts:

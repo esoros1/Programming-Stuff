@@ -65,12 +65,16 @@ def lowestRomanNumeral(n):
 				break
 	return result
 
-result = 0
-f = open("roman.txt","r")
-for line in f:
-	#strip whitespace
-	s = line.rstrip()
-	lowest = lowestRomanNumeral(sumRomanNumeral(s))
-	result += len(s) - len(lowest)
-print result
+def main():
+	result = 0
+	f = open("roman.txt","r")
+	for line in f:
+		#strip whitespace
+		s = line.rstrip()
+		lowest = lowestRomanNumeral(sumRomanNumeral(s))
+		result += len(s) - len(lowest)
+	print result
+
+if __name__ == "__main__":
+	main()
 				
