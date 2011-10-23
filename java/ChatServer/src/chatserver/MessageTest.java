@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class MessageTest implements Serializable {
     
     public static void main (String [] args) {
-        Message m = new Message("Hello World","shitface2k");
+        Message m = new Message("Hello World","testname");
         System.out.println(m);
     }
 }
