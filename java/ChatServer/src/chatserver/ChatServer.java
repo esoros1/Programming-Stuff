@@ -20,7 +20,7 @@ public class ChatServer {
     /**
      * @param args the command line arguments
      */
-    public static LinkedBlockingQueue<Message> messagesToSend = new LinkedBlockingQueue<Message>();
+    public static LinkedBlockingQueue<String> messagesToSend = new LinkedBlockingQueue<String>();
     public static List<Client> clients = new LinkedList<Client>();
 
     public static void main(String[] args) throws IOException {
@@ -30,7 +30,7 @@ public class ChatServer {
         
         server = new ServerSocket(4444);
         System.out.println("Listening for clients on port 4444");
-
+        
         //start the output thread
 		ChatServerOutputThread outputThread = new ChatServerOutputThread();
 		outputThread.start();

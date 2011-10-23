@@ -24,7 +24,7 @@ public class ClientConnectionThread extends Thread {
    //the username is default and will be changed if the connection to the server is successful. 
    public ClientConnectionThread(Socket clientSocket, int ID) 
    {
-	   try {
+      try {
        client = new Client("default",new ObjectInputStream(clientSocket.getInputStream()), 
        									new ObjectOutputStream(clientSocket.getOutputStream()),
        										clientSocket.getInetAddress().toString());
@@ -38,51 +38,41 @@ public class ClientConnectionThread extends Thread {
 
    }
    
+   
    public void run()
    {
        ObjectInputStream in = client.getInputStream();
        ObjectOutputStream out = client.getOutputStream();
         
-       try {
-<<<<<<< HEAD
-           	
-			//add the client's output stream to the list.        	
-		   ChatServer.clients.add(client);
-		   //prompt the user for a username
-=======
-           
-           in = new ObjectInputStream(clientSocket.getInputStream());
-           out = new ObjectOutputStream(clientSocket.getOutputStream());
-			
-           //add the client's output stream to the list.        	
-	   ChatServer.clientOutputs.add(out);
+       try {	
+	   //add the client's output stream to the list.        	
+           ChatServer.clients.add(client);	
            //prompt the user for a username
->>>>>>> ec1adcfb474ab50bd6685ef8cabeb9bab9aa0eee
            out.writeObject("Enter a username");
 	   out.flush();
            //get usernmae from the client
            String username = (String) in.readObject();
-		   client.setUsername(username);
+           client.setUsername(username);
            //Print out information about the connection, and than start a thread that looks for inputs. 
            System.out.println("Client Accecpted: "+client);
-
-		  //look for messages being sent from the client
-		  Message message = null;
-		  while (true) {
-				message = (Message) in.readObject();				
-				ChatServer.messagesToSend.add(message);
-		  }
            
-         } catch (ClassNotFoundException ex) {
+           //The server sends a string that contains the username and text
+           //sperated by a delimiter of #59.
+           //decode it and add the message to the queue of messages
+	    String message = null;
+            while (true) {
+		message = (String) in.readObject();
+                ChatServer.messagesToSend.add(username+": "+message);
+            }
+         
+       } catch (ClassNotFoundException ex) {
             //Logger.getLogger(ClientConnectionThread.class.getName()).log(Level.SEVERE, null, ex);
          } catch (IOException ex) {
-<<<<<<< HEAD
+
          	System.out.println("Lost Connection to Client...");
          	//remove the client from the list of clients
          	ChatServer.clients.remove(client);
-=======
          Logger.getLogger(ClientConnectionThread.class.getName()).log(Level.SEVERE, null, ex);
->>>>>>> ec1adcfb474ab50bd6685ef8cabeb9bab9aa0eee
          }
    }
 

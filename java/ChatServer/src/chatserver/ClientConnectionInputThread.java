@@ -23,12 +23,12 @@ public class ClientConnectionInputThread extends Thread {
     public void run() 
     {
         //get input ftom the client
-        Message message = null;
-		ObjectInputStream in = client.getInputStream();
+       Message message = null;
+	ObjectInputStream in = client.getInputStream();
         while (true) {
             try {
                 message = (Message) in.readObject();
-            		ChatServer.messagesToSend.add(message);
+            	ChatServer.messagesToSend.add("");
             } catch (IOException ex) {
                 System.out.println("Lost Connection to client " + client.getUsername() );
 				//remove client from the list of clients to send to

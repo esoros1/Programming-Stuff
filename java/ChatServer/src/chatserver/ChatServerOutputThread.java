@@ -10,13 +10,12 @@ public class ChatServerOutputThread extends Thread {
 		try {
 			//check to see if there are any new messages that need sent out	
 			while (true) {
-			    Message m;
-				while ( (m = ChatServer.messagesToSend.poll()) != null) {
+			    String s;
+				while ( (s = ChatServer.messagesToSend.poll()) != null) {
 					for (Client client : ChatServer.clients) {
 							ObjectOutputStream out = client.getOutputStream();
-							out.writeObject(m);
+							out.writeObject(s);
 							out.flush();
-							//ChatServer.messagesToSend.remove(m);
 						}
 					}
 					//sleep for 10 miliseconds, and than look for new messages
