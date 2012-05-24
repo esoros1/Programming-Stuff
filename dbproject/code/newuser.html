@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="styles.css" />
+
+<title>That's Bargain! Books</title>
+
+<script type="text/javascript" src="jquery.js"></script>          
+ <script type="text/javascript">                                         
+   $(document).ready(function() {
+ 	 		 		 		
+ 		$("#adduser").submit(function(){ 
+			
+			
+			$(".error_msg").hide();
+			var valid = true;
+			
+			var firstName = $("#firstname").val();
+			if(firstName == "")
+			{
+				$("#first_error_msg").show();
+				valid = false;
+			}
+			
+			var lastName = $("#lastname").val();
+			if(lastName == "")
+			{
+				$("#last_error_msg").show();
+				valid = false;	
+			}
+			
+			var email = $("#email").val()
+			if(!validateEmailAddress(email))
+			{
+				$("#email_error_msg").show();
+				valid = false;	
+			}
+			
+			var address = $("#address").val();
+			if(address == "")
+			{
+				$("#address_error_msg").show();
+				valid = false;	
+			}
+			
+			var phone = $("#phone").val();
+			if(!validatePhoneNumber(phone))
+			{
+				$("#phone_error_msg").show();
+				valid = false;	
+			}
+			
+			var city = $("#city").val();
+			if(city == "")
+			{
+				$("#city_error_msg").show();
+				valid = false;	
+			}
+			
+			
+			var zip = $("#zip").val();
+			if(!validateZipCode(zip))
+			{
+				$("#zip_error_msg").show();
+				valid = false;	
+			}
+			
+			var pass = $("#pass").val();
+			var passConfirm = $("#pass_confirm").val();
+
+			if(pass == "" || passConfirm == "")
+			{
+				$("#pass_error_msg").show();
+				valid = false;	
+			}
+			
+			else if(pass != passConfirm)
+			{
+				$("#pass_confirm_error_msg").show();
+				$("#pass").val("");
+				$("#pass_confirm").val("");
+				valid = false;
+			}
+			
+			return valid;
+	});
+ });                                   
+ 
+ //make sure that the string only contains letters using regular expressions
+ function isAlpha(str)
+ {
+ 	return /^[a-zA-Z()]+$/.test(str);
+ }
+ 
+ //make sure that the phone number is of the form xxx-xxx-xxxx
+ function validatePhoneNumber(str)
+ {
+ 	return /^\d{3}-\d{3}-\d{4}$/.test(str);
+ }
+ 
+ //make sure that the email address has the correct form 
+ function validateEmailAddress(str)
+ {
+ 	return /^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$/.test(str);
+ }
+ 
+ //make sure that the zip code is 5 digits long
+ function validateZipCode(str)
+ {
+ 	return /^\d{5}$/.test(str);
+ }
+ 
+ </script> 
+
+</head>
+<body>
+<?php require_once("header.php"); ?>
+<!-- The form to register a new user -->
+
+<form action="adduser.php" method="post" id="adduser" class="login-reg" >
+	<?php if(isset($_GET['guest']))
+	{
+	?>
+	<input type="hidden" value="redirect" name="guest">
+	<?php } ?>
+	<h1 class="form-text"> New User Registration </h1>
+    	<table align="center">	
+            <tr>
+            	<td><label>First Name:</label></td>
+				<td><input type="text"  name="firstname" id="firstname"/></td>
+            	<td><p class="error_msg" id = "first_error_msg"> Please Enter a Valid First Name </p></td>
+                </tr>
+   			
+            <tr>
+           	 	<td><label>Last Name:</label></td>
+    			<td><input type="text" name="lastname" id="lastname"/></td>
+            	<td><p class="error_msg" id = "last_error_msg"> Please Enter a valid last name </p></td>
+            </tr>
+            	
+            <tr>
+            	<td><label>Email:</label></td>
+    			<td><input type="text" name="email" id="email"/></td>
+                 <td><p class="error_msg" id = "email_error_msg"> Please Enter a valid email address</p></td>
+            </tr>
+         
+          	<tr>
+            	<td><label>Address:</label></td>
+    			<td><input type="text" name="address" id="address"/></td>
+                <td><p class="error_msg" id="address_error_msg"> Please Enter a valid address</p></td>
+            </tr>
+       
+            <tr>
+            <td><label>Phone:</label></td>
+    		<td><input type="text" name="phone" id="phone"/></td>
+            <td><p class="error_msg" id = "phone_error_msg">xxx-xxx-xxxx</p></td>
+            </tr>       
+         	
+            <tr>
+            <td><label>City:</label></td>
+    		<td><input type="text" name="city" id="city"/></td>                            
+            <td><p class="error_msg" id = "city_error_msg"> Please Enter a valid city</p></td>
+            </tr>
+            
+            <tr>
+            <td><label>State:</label></td>
+    		<td><select name="state">
+        			<option value="AL">Alabama</option>
+					<option value="AK">Alaska</option>
+					<option value="AZ">Arizona</option>
+					<option value="AR">Arkansas</option>
+					<option value="CA">California</option>
+					<option value="CO">Colorado</option>
+					<option value="CT">Connecticut</option>
+					<option value="DE">Delaware</option>
+					<option value="DC">District of Columbia</option>
+					<option value="FL">Florida</option>
+					<option value="GA">Georgia</option>
+					<option value="HI">Hawaii</option>
+					<option value="ID">Idaho</option>
+					<option value="IL">Illinois</option>
+					<option value="IN">Indiana</option>
+					<option value="IA">Iowa</option>
+					<option value="KS">Kansas</option>
+					<option value="KY">Kentucky</option>
+					<option value="LA">Louisiana</option>
+					<option value="ME">Maine</option>
+					<option value="MD">Maryland</option>
+					<option value="MA">Massachusetts</option>
+					<option value="MI">Michigan</option>
+					<option value="MN">Minnesota</option>
+					<option value="MS">Mississippi</option>
+					<option value="MO">Missouri</option>
+					<option value="MT">Montana</option>
+					<option value="NE">Nebraska</option>
+					<option value="NV">Nevada</option>
+					<option value="NH">New Hampshire</option>
+					<option value="NJ">New Jersey</option>
+					<option value="NM">New Mexico</option>
+					<option value="NY">New York</option>
+					<option value="NC">North Carolina</option>
+					<option value="ND">North Dakota</option>
+					<option value="OH">Ohio</option>
+					<option value="OK">Oklahoma</option>
+					<option value="OR">Oregon</option>
+					<option value="PA">Pennsylvania</option>
+					<option value="RI">Rhode Island</option>
+					<option value="SC">South Carolina</option>
+					<option value="SD">South Dakota</option>
+					<option value="TN">Tennessee</option>
+					<option value="TX">Texas</option>
+					<option value="UT">Utah</option>
+					<option value="VT">Vermont</option>
+					<option value="VA">Virginia</option>
+					<option value="WA">Washington</option>
+					<option value="WV">West Virginia</option>
+					<option value="WI">Wisconsin</option>
+					<option value="WY">Wyoming</option>
+			</select></td>
+            </tr>
+            
+            <tr>
+            <td><label>Zip:</label></td>
+            <td><input type="text" name="zip" id="zip"/></td>
+            <td><p class="error_msg" id = "zip_error_msg"> Please Enter a valid zip</p></td>
+            </tr>
+         	
+            <tr>
+            <td><label>Password:</label></td>
+    		<td><input type="password" name="pass" id="pass"/></td>
+            <td><p class="error_msg" id = "pass_error_msg"> Please Enter a valid password</p></td>
+            </tr>
+            
+            <tr>
+            <td><label>Confirm Password:</label></td>
+    		<td><input type="password" name="pass_confirm" id="pass_confirm"/></td>
+            <td><p class="error_msg" id = "pass_confirm_error_msg"> Those Passwords Don't Match</p></td>
+            </tr>
+        	</table>    
+    	
+        	<p align=center><input type="submit" name="register" value="Register"/></p>
+</form>
+
+		
+	<?php
+	if(isset($_GET['guest']))
+	{
+	?>
+	
+	<p align="center">Welcome Guest! In Order To Checkout, You Must First Register.</br>It Is Fast, Painless, and Free. </br>
+		You Will Be Redirected to Checkout After Registration</p>
+	
+	<?php } ?>
+		
+		<?php
+			if($_GET['pass'] == -1)
+			echo '<div class="clean-gray">A User With That Email Already Exists.</br>Please Try Again</div>';
+		?>
+</body>
+</html>

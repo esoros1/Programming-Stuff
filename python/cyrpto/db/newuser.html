@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="styles.css" />
+
+<title>Untitled Document</title>
+
+
+<script type="text/javascript" src="jquery.js"></script>          
+ <script type="text/javascript">                                         
+   $(document).ready(function() {
+ 		$("#adduser").submit(function(){ 
+			
+			$(".error_msg").hide();
+			var valid = true;
+			var firstName = $("#firstname").val();
+			if(firstName == "")
+			{
+				$("#first_error_msg").show();
+				valid = false;
+			}
+			var lastName = $("#lastname").val();
+			if(lastName == "")
+			{
+				$("#last_error_msg").show();
+				valid = false;	
+			}
+			var email = $("#email").val()
+			if(email == "")
+			{
+				$("#email_error_msg").show();
+				valid = false;	
+			}
+			var address = $("#address").val();
+			if(address == "")
+			{
+				$("#address_error_msg").show();
+				valid = false;	
+			}
+			var phone = $("#phone").val();
+			if(phone == "")
+			{
+				$("#phone_error_msg").show();
+				valid = false;	
+			}
+			var city = $("#city").val();
+			if(city == "")
+			{
+				$("#city_error_msg").show();
+				valid = false;	
+			}
+			var state = $("#state").val();
+			if(state.length != 2)
+			{
+				$("#state_error_msg").show();
+				valid = false;	
+			}
+			var zip = $("#zip").val();
+			if(zip == "")
+			{
+				$("#zip_error_msg").show();
+				valid = false;	
+			}
+			
+			var pass = $("#pass").val();
+			var passConfirm = $("#pass_confirm").val();
+
+			if(pass == "" || passConfirm == "")
+			{
+				$("#pass_error_msg").show();
+				valid = false;	
+			}
+			else if(pass != passConfirm)
+			{
+				$("#pass_confirm_error_msg").show();
+				$("#pass").val("");
+				$("#pass_confirm").val("");
+				valid = false;
+			}
+			
+			return valid;
+	});
+ });                                   
+ </script> 
+
+</head>
+<body>
+<?php require_once("header.php"); ?>
+<!-- The form to register a new user -->
+<form action="adduser.php" method="post" id="adduser" class="login-reg" >
+	<h1 class="form-text"> New User Registration </h1>
+    	<table>	
+            <tr>
+            	<td><label>First Name:</label></td>
+				<td><input type="text"  name="firstname" id="firstname"/></td>
+            	<td><p class="error_msg" id = "first_error_msg"> Please Enter a Valid First Name </p></td>
+                </tr>
+   			
+            <tr>
+           	 	<td><label>Last Name:</label></td>
+    			<td><input type="text" name="lastname" id="lastname"/></td>
+            	<td><p class="error_msg" id = "last_error_msg"> Please Enter a valid last name </p></td>
+            </tr>
+            	
+            <tr>
+            	<td><label>Email:</label></td>
+    			<td><input type="text" name="email" id="email"/></td>
+                 <td><p class="error_msg" id = "email_error_msg"> Please Enter a valid email address</p></td>
+            </tr>
+         
+          	<tr>
+            	<td><label>Address:</label></td>
+    			<td><input type="text" name="address" id="address"/></td>
+                <td><p class="error_msg" id="address_error_msg"> Please Enter a valid address</p></td>
+            </tr>
+       
+            <tr>
+            <td><label>Phone:</label></td>
+    		<td><input type="text" name="phone" id="phone"/></td>
+            <td><p class="error_msg" id = "phone_error_msg"> Please Enter a valid phone number</p></td>
+            </tr>       
+         	
+            <tr>
+            <td><label>City:</label></td>
+    		<td><input type="text" name="city" id="city"/></td>                            
+            <td><p class="error_msg" id = "city_error_msg"> Please Enter a valid city</p></td>
+            </tr>
+            
+            <tr>
+            <td><label>State:</label></td>
+    		<td><input type="text" name="state" id="state"/></td>
+            <td><p class="error_msg" id = "state_error_msg"> Please Enter a valid 2 digit abbreviation</p></td>
+            </tr>
+            
+            <tr>
+            <td><label>Zip:</label></td>
+            <td><input type="text" name="zip" id="zip"/></td>
+            <td><p class="error_msg" id = "zip_error_msg"> Please Enter a valid zip</p></td>
+            </tr>
+         	
+            <tr>
+            <td><label>Password:</label></td>
+    		<td><input type="password" name="pass" id="pass"/></td>
+            <td><p class="error_msg" id = "pass_error_msg"> Please Enter a valid password</p></td>
+            </tr>
+            
+            <tr>
+            <td><label>Confirm Password:</label></td>
+    		<td><input type="password" name="pass_confirm" id="pass_confirm"/></td>
+            <td><p class="error_msg" id = "pass_confirm_error_msg"> Those Passwords Don't Match</p></td>
+            </tr>
+        	</table>    
+    	
+        	<input type="submit" name="register" value="Register"/>
+</form>
+
+		<?php
+			if($_GET['pass'] == -1)
+			echo '<div class="clean-gray">A User With That Email Already Exists.</br>Please Try Again</div>';
+		?>
+</body>
+</html>
