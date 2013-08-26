@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--First View Controller - First-->
+        <scene sceneID="11">
+            <objects>
+                <viewController title="First" id="2" customClass="FirstViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="16">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" translatesAutoresizingMaskIntoConstraints="NO" id="dY0-0a-7Sh">
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Pnc-dO-2Rw"/>
+                                    <barButtonItem title="Item" systemItem="camera" id="vVE-65-aO5">
+                                        <connections>
+                                            <action selector="takePicture:" destination="2" id="lEH-94-teZ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="DwV-2Q-yum"/>
+                                    <barButtonItem title="Submit" id="Bih-yR-IEa">
+                                        <connections>
+                                            <action selector="submitClicked:" destination="2" id="10o-EH-ieU"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="K6S-AD-vpV"/>
+                                    <barButtonItem title="Album" id="iAL-Zk-hnp">
+                                        <connections>
+                                            <action selector="album:" destination="2" id="NL1-b1-HLQ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="M8L-9b-sY2"/>
+                                </items>
+                            </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="OVS-3o-CVj">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="295" id="MnX-2t-txm"/>
+                                    <constraint firstAttribute="height" constant="377" id="ace-N0-4Qe"/>
+                                </constraints>
+                            </imageView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y8c-In-5Mu">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="216" id="Rw1-6S-hZ2"/>
+                                </constraints>
+                            </pickerView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackOpaque" translatesAutoresizingMaskIntoConstraints="NO" id="jKz-JJ-WFR">
+                                <items>
+                                    <barButtonItem title="Done" width="144" id="vwq-Mt-6uk">
+                                        <connections>
+                                            <action selector="onPickerDonePress:" destination="2" id="qa1-xE-xng"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Cancel" width="157" id="2k1-Qt-fb9">
+                                        <connections>
+                                            <action selector="onPickerCancelPress:" destination="2" id="qXM-T5-d5q"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <constraints>
+                            <constraint firstItem="Y8c-In-5Mu" firstAttribute="centerX" secondItem="OVS-3o-CVj" secondAttribute="centerX" type="default" id="5yJ-1O-iNl"/>
+                            <constraint firstItem="dY0-0a-7Sh" firstAttribute="trailing" secondItem="16" secondAttribute="trailing" type="default" id="6ka-k3-6k9"/>
+                            <constraint firstItem="jKz-JJ-WFR" firstAttribute="top" secondItem="dY0-0a-7Sh" secondAttribute="top" type="default" id="H0r-h9-Cna"/>
+                            <constraint firstItem="Y8c-In-5Mu" firstAttribute="leading" secondItem="16" secondAttribute="leading" type="default" id="MTz-6L-i9s"/>
+                            <constraint firstItem="jKz-JJ-WFR" firstAttribute="trailing" secondItem="16" secondAttribute="trailing" type="default" id="N2u-1P-DnV"/>
+                            <constraint firstItem="OVS-3o-CVj" firstAttribute="top" secondItem="16" secondAttribute="top" constant="20" symbolic="YES" type="default" id="Snh-Ru-dWq"/>
+                            <constraint firstItem="jKz-JJ-WFR" firstAttribute="leading" secondItem="16" secondAttribute="leading" type="default" id="VI8-Uo-6OQ"/>
+                            <constraint firstItem="dY0-0a-7Sh" firstAttribute="top" secondItem="Y8c-In-5Mu" secondAttribute="bottom" type="default" id="Vg1-GR-yAr"/>
+                            <constraint firstItem="dY0-0a-7Sh" firstAttribute="leading" secondItem="16" secondAttribute="leading" type="default" id="YPE-yN-8Dy"/>
+                            <constraint firstItem="Y8c-In-5Mu" firstAttribute="trailing" secondItem="16" secondAttribute="trailing" type="default" id="lE6-Rk-8Oi"/>
+                            <constraint firstItem="Y8c-In-5Mu" firstAttribute="top" secondItem="16" secondAttribute="top" constant="198" id="sH6-b7-2Nf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="xad-fi-swa"/>
+                    <connections>
+                        <outlet property="imageView" destination="OVS-3o-CVj" id="fcL-dc-2mz"/>
+                        <outlet property="pickerToolBar" destination="jKz-JJ-WFR" id="zWT-zb-BCJ"/>
+                        <outlet property="pickerView" destination="Y8c-In-5Mu" id="mDY-tc-IvJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="507" y="-141"/>
+        </scene>
+        <!--Coin Table View Controller-->
+        <scene sceneID="LqK-1F-Ry3">
+            <objects>
+                <viewController storyboardIdentifier="CoinTable" id="DJs-TW-RGH" customClass="CoinTableViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mwI-40-904">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="g1m-QI-uq4">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="407" id="odn-US-e1F"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="DJs-TW-RGH" id="oF2-Hs-ClO"/>
+                                    <outlet property="delegate" destination="DJs-TW-RGH" id="ol1-Cf-9ne"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZO-0p-qPj">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Go Back">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onDismissPress:" destination="DJs-TW-RGH" eventType="touchUpInside" id="C0U-xL-Tvv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="g1m-QI-uq4" firstAttribute="top" secondItem="mwI-40-904" secondAttribute="top" type="default" id="Mvd-iu-Lox"/>
+                            <constraint firstItem="fZO-0p-qPj" firstAttribute="centerX" secondItem="g1m-QI-uq4" secondAttribute="centerX" type="default" id="RAV-4i-kpQ"/>
+                            <constraint firstItem="g1m-QI-uq4" firstAttribute="trailing" secondItem="mwI-40-904" secondAttribute="trailing" type="default" id="X13-ET-GZj"/>
+                            <constraint firstItem="g1m-QI-uq4" firstAttribute="leading" secondItem="mwI-40-904" secondAttribute="leading" type="default" id="eos-VG-T91"/>
+                            <constraint firstItem="fZO-0p-qPj" firstAttribute="top" secondItem="g1m-QI-uq4" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="g56-CD-fTj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="g1m-QI-uq4" id="g8X-Ta-M2K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iE2-45-UXs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="865" y="-141"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ieG-np-MMe">
+            <objects>
+                <viewController storyboardIdentifier="OverlayController" id="1OA-0C-13t" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="amZ-wN-UMU">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H1h-Tw-oXa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1237" y="-141"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="CoinTableViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CoinTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="onDismissPress:"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="FirstViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="album:"/>
+                <relationship kind="action" name="onPickerCancelPress:"/>
+                <relationship kind="action" name="onPickerDonePress:"/>
+                <relationship kind="action" name="onPress:"/>
+                <relationship kind="action" name="submitClicked:"/>
+                <relationship kind="action" name="takePicture:"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="pickerToolBar" candidateClass="UIToolbar"/>
+                <relationship kind="outlet" name="pickerView" candidateClass="UIPickerView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
